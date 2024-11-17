@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Major Assignment 3</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <script src="network.js"></script>
+    <h1>Force Layout Visualization Using D3.js</h1>
+    <style>
+        #tooltip {
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            left: 0;
+            width: auto;
+            padding: 10px;
+            background: white;
+            font-family: sans-serif;
+            font-size: large;
+            border-radius: 2px;
+            pointer-events: none;
+            line-height: 1;
+        }
+
+        svg{
+            width: 70vw;
+            height: 70vw;
+        }
+       /* #MainContainer{
+            font-family: sans-serif;
+            font-weight: normal;
+            font-size: 8pt;
+            display: flex;
+        } */
+        .controller{
+            background: aliceblue;
+        }     
+        #leftPanel{
+            width: 200px;
+            margin: 20px;
+            padding: 10px;
+            border-radius: 20px;
+            height: 30%;
+        }
+    </style>
+</head>
+<body>
+ <div id="tooltip"></div>
+ <div id="MainContainer" > 
+    <div class = "controller" id ="leftPanel">
+        <h4>Control</h4>
+        <form>
+            <label for = "forceManyBody">forceManyBody</label>
+            <input type = "range" name="forceManyBody" id="forceManyBody">
+            <label for = "forceCollide">forceCollide</label>
+            <input type = "range" name="forceCollide" id="forceCollide">
+            <label for = "forceLink">forceLink</label>
+            <input type = "range" name="forceLink" id="forceLink">
+        </form>
+    </div>
+    <div class="sub" id="canvas"></div>
+ </div>
+ <script> 
+    d3.json("author_network1.json").then(function (data){
+        let svg = d3.select('body').append("svg").attr("viewBox","0 0 2000 1600")
+
+        simulate(data,svg) // main function to make network
+    })
+</script>
+
+
+</body>
+</html>
